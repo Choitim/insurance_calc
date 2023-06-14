@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>4대 보험 계산기</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="calculator-container">
+    <h1>4대 보험 계산기</h1>
+    <div class="calculator-form">
+      <form id="insurance-form" method="post">
+        <div class="form-group">
+          <label for="salary">월 급여 (원):</label>
+          <input type="number" id="salary" name="salary" required>
+        </div>
+        <div class="form-group">
+          <label for="insurance-rate">보험료율 (%):</label>
+          <input type="number" id="insurance-rate" name="insurance_rate" required>
+        </div>
+        <div class="form-group">
+          <button type="submit">계산</button>
+        </div>
+      </form>
+      {% if result %}
+        <div id="result">
+          <h3>결과:</h3>
+          <p>건강보험료: {{ result['health_insurance'] }} 원</p>
+          <p>고용보험료: {{ result['employment_insurance'] }} 원</p>
+          <p>연금보험료: {{ result['pension_insurance'] }} 원</p>
+          <p>국민연금: {{ result['national_pension'] }} 원</p>
+          <p>총 보험료: {{ result['total_insurance'] }} 원</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
